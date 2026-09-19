@@ -4,10 +4,16 @@ from sqlalchemy import create_engine
 
 import models, schemas
 from database import SessionLocal, engine, Base
+import os
+
 
 Base.metadata.create_all(bind=engine)  # создаёт таблицы, если их ещё нет
 
 app = FastAPI()
+
+if os.getenv("RESET_DB"):
+    if os.path.exists("tasks.db"):
+        os.remove("tasks.db")
 
 def get_db():
     db = SessionLocal()
