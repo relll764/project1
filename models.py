@@ -18,6 +18,6 @@ class Task(Base):
     title = Column(String)
     description = Column(String, nullable=True)
     is_done = Column(Boolean, default=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
     owner_id = Column(Integer, ForeignKey("users.id"))
-
     owner = relationship("User", back_populates="tasks")
