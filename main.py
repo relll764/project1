@@ -16,6 +16,10 @@ def get_db():
     finally:
         db.close()
 
+@app.get("/")
+def root():
+    return {"message": "Task Manager API — see /docs for documentation"}
+
 @app.post("/tasks/", response_model=schemas.TaskResponse)
 def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
     db_task = models.Task(title=task.title, description=task.description)
