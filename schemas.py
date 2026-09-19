@@ -5,6 +5,7 @@ from typing import Optional
 class TaskCreate(BaseModel):
     title: str
     description: Optional[str] = None
+    owner_id: int
 
 class TaskResponse(BaseModel):
     id: int
